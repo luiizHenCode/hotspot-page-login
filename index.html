@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet Hotspot > Login</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+      font-family: "Roboto", sans-serif;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+
+      background-color: #171923;
+      font-size: 10px;
+
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      background-image: linear-gradient(#1c4532, #171923);
+
+      opacity: 0.1;
+
+      z-index: -1;
+    }
+
+    .container {
+      width: 100%;
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 8px;
+      padding: 0 24px;
+
+      animation: slideUp 2s forwards;
+    }
+
+    .container .logo {
+      width: 256px;
+      height: 256px;
+
+      border-radius: 50%;
+
+      background: #4a5568;
+      margin-bottom: 64px;
+
+      box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.01);
+
+      animation: pulseShadow 2s infinite;
+    }
+
+    .container .logo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+
+      object-fit: cover;
+      object-position: center;
+      z-index: 9;
+    }
+
+    .container p {
+      max-width: 400px;
+      color: #cbd5e0;
+      font-size: 16px;
+      text-align: center;
+      line-height: 140%;
+    }
+
+    .container .button {
+      width: 100%;
+      max-width: 420px;
+      height: 56px;
+      border-radius: 8px;
+
+      margin-top: 24px;
+
+      color: #ffffff;
+      background: #38a169;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 16px;
+
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      transition: all 0.2s ease-in-out;
+
+      animation: pulseScale 2s infinite;
+    }
+
+    .container .button:hover {
+      background: #2f855a;
+    }
+
+    .container small {
+      font-size: 14px;
+      margin-top: 12px;
+
+      color: #718096;
+    }
+
+    .container small a:hover {
+      color: #2c5282;
+    }
+
+    .container small a:visited {
+      color: #2b6cb0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes pulseShadow {
+      from {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.07);
+      }
+
+      to {
+        box-shadow: 0 0 0 40px rgba(255, 255, 255, 0);
+      }
+    }
+
+    @keyframes pulseScale {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.95);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(-10%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img
+          aria-label="Logo do cliente"
+          src="https://pps.whatsapp.net/v/t61.24694-24/322085541_1217947022478911_5849964101277501334_n.jpg?ccb=11-4&oh=01_AdQ6lqpsHMoSsD9cKd1DCxZdJzK_AYs1qg-eq0SJK1UmTw&oe=63CE18E9"
+        />
+      </div>
+
+      <p>
+        Esse serviço conta com a plataforma segura da <b>OpenConnect</b>. Para
+        continuar com a libera&ccedil&atildeo vamos interagir através do
+        Whatsapp
+      </p>
+      <a
+        class="button"
+        href="https://wa.me/551146710498?text=Gostaria%20de%20conectar%20no%20Wi-fi"
+        >Quero usar o Wi-Fi</a
+      >
+
+      <small>
+        Desenvolvido por <a href="https://openitgroup.com.br">OpenIT Group</a>
+      </small>
+    </div>
+
+    <div class="hidden">
+      <div>
+        <a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)"
+          >OpenConnect</a
+        >
+      </div>
+
+      $(if chap-id)
+      <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+      </form>
+
+      <script type="text/javascript" src="/md5.js"></script>
+      <script type="text/javascript">
+        function doLogin() {
+          document.sendin.username.value = document.login.username.value;
+          document.sendin.password.value = hexMD5(
+            "$(chap-id)" + document.login.password.value + "$(chap-challenge)"
+          );
+          document.sendin.submit();
+          return false;
+        }
+      </script>
+      $(endif)
+
+      <table width="100%" style="margin-top: 10%">
+        <tr>
+          <td valign="middle">
+            <div class="notice" style="color: #c1c1c1; font-size: 9px">
+              Please log on to use the internet hotspot service<br />$(if trial
+              == 'yes')Free trial available,
+              <a
+                style="color: #ff8080"
+                href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)"
+                >click here</a
+              >.$(endif)
+            </div>
+            <br />
+            <table
+              width="280"
+              height="280"
+              style="border: 1px solid #cccccc; padding: 0px"
+              cellpadding="0"
+              cellspacing="0"
+            >
+              <tr>
+                <td valign="bottom" height="175" colspan="2">
+                  <form
+                    name="login"
+                    action="$(link-login-only)"
+                    method="post"
+                    $(if
+                    chap-id)
+                    onSubmit="return doLogin()"
+                    $(endif)
+                  >
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+
+                    <table width="100" style="background-color: #ffffff">
+                      <tr>
+                        <td>Telefone</td>
+                        <td>
+                          <input
+                            style="width: 80px"
+                            name="username"
+                            type="text"
+                            value="$(username)"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>CPF</td>
+                        <td>
+                          <input
+                            style="width: 80px"
+                            name="password"
+                            type="password"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" value="OK" /></td>
+                      </tr>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+
+            <br />
+            $(if error)<br />
+            <div style="color: #ff8080; font-size: 9px">$(error)</div>
+            $(endif)
+          </td>
+        </tr>
+      </table>
+
+      <script type="text/javascript">
+        document.login.username.focus();
+      </script>
+    </div>
+  </body>
+</html>
